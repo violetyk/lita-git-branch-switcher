@@ -27,7 +27,8 @@ module Lita
         g.fetch
         if g.is_branch?(branch_name)
           g.checkout(branch_name)
-          response.reply(g.current_branch)
+          g.pull
+          response.reply(current_branch)
         else
           response.reply('[%{branch}] is not found.' % {branch: branch_name } )
         end
