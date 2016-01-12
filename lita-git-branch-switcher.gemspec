@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-git-branch-switcher"
-  spec.version       = "0.1.0"
+  spec.version       = "0.2.0"
   spec.authors       = ["violetyk"]
   spec.email         = ["yuhei.kagaya@gmail.com"]
   spec.description   = "git branch switcher"
@@ -23,4 +23,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", ">= 3.0.0"
 
   spec.add_dependency "git"
+  spec.add_dependency "systemu"
 end

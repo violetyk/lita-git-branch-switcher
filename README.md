@@ -16,7 +16,13 @@ in `lita_config.rb`
 
 ```ruby
 Lita.configure do |config|
+  # required
   config.handlers.git_branch_switcher.repository_path = "/path/to/repository"
+
+  # options
+  config.handlers.git_branch_switcher.pull_after_switch = true # default false
+  config.handlers.git_branch_switcher.remote = 'github' # default origin
+  config.handlers.git_branch_switcher.command_after_switch = %q(rake tmp:clear)
 end
 ```
 

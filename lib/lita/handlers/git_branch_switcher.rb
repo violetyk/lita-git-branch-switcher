@@ -1,9 +1,13 @@
 require 'git'
+require 'systemu'
 
 module Lita
   module Handlers
     class GitBranchSwitcher < Handler
       config :repository_path
+      config :remote, default: 'origin'
+      config :pull_after_switch, default: false
+      config :command_after_switch, default: nil
 
       def current_branch
         g = Git.open(config.repository_path)
@@ -27,7 +31,8 @@ module Lita
         g.fetch
         if g.is_branch?(branch_name)
           g.checkout(branch_name)
-          g.pull
+          g.pull(config.remote, branch_name) if config.pull_after_switch == true
+          systemu(config.command_after_switch) unless config.command_after_switch.nil?
           response.reply(current_branch)
         else
           response.reply('[%{branch}] is not found.' % {branch: branch_name } )
