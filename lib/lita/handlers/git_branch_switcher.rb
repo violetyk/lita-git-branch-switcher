@@ -32,10 +32,10 @@ module Lita
           branch_name = response.matches[0][0]
 
           g = Git.open(config.repository_path)
-          g.fetch
+          g.fetch unless config.remote.nil?
           if g.is_branch?(branch_name)
             g.checkout(branch_name)
-            g.pull(config.remote, branch_name) if config.pull_after_switch == true
+            g.pull(config.remote, branch_name) if !config.remote.nil? && config.pull_after_switch == true
             systemu(config.command_after_switch) unless config.command_after_switch.nil?
             response.reply("@%{user} %{branch}" % {
               user: response.user.mention_name,
