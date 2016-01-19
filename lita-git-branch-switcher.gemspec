@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = "lita-git-branch-switcher"
-  spec.version       = "0.2.0"
+  spec.version       = "0.2.1"
   spec.authors       = ["violetyk"]
   spec.email         = ["yuhei.kagaya@gmail.com"]
   spec.description   = "git branch switcher"
